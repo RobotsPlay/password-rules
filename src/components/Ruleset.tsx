@@ -6,7 +6,7 @@ function Ruleset() {
   const [rules, setRules] = useState([]);
   const {ruleset, setRuleset} = useContext(RulesetContext);
 
-  const onChooseRuleOption = (ruleIndex, optionId) => {
+  const onChooseRuleOption = (ruleIndex: number, optionId: string) => {
     const newRules = [...rules];
     newRules[ruleIndex] = {
       ruleOptionId: optionId,
@@ -24,7 +24,7 @@ function Ruleset() {
 
       {rules.map((rule, index) => {
         return (
-          <div key={index} className="mt-4">
+          <div key={index} className="mt-4 flex gap-4">
             <select onChange={(e) => { onChooseRuleOption(index, e.target.value) }}>
               {ruleOptions.map((option) => {
                 return (

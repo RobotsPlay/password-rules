@@ -105,6 +105,6 @@ export const ruleOptions = [
   }
 ];
 
-export const getRuleOptionById = (id) => {
+export const getRuleOptionById = (id: string) => {
   return ruleOptions.find((option) => option.id === id);
 };
