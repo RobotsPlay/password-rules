@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import Ruleset from './components/Ruleset'
 import { RulesetContext } from './store/ruleset'
 
