@@ -1,13 +1,16 @@
-import { useContext, useState } from "react";
-import { RulesetContext } from "../store/ruleset";
-import { ruleOptions, getRuleOptionById } from "../data/rule-options";
+import { useState } from "react";
+import { ruleOptions, /*getRuleOptionById */ } from "../data/rule-options";
+
+type RuleArrayType = {
+  ruleOptionId: string;
+  qualifiers: [];
+}[] | [];
 
 function Ruleset() {
-  const [rules, setRules] = useState([]);
-  const {ruleset, setRuleset} = useContext(RulesetContext);
+  const [rules, setRules] = useState<RuleArrayType>([]);
 
   const onChooseRuleOption = (ruleIndex: number, optionId: string) => {
-    const newRules = [...rules];
+    const newRules : RuleArrayType = [...rules] || [];
     newRules[ruleIndex] = {
       ruleOptionId: optionId,
       qualifiers: []
@@ -17,6 +20,16 @@ function Ruleset() {
     console.log(rules);
   }
 
+  const onAddRule = () => {
+    setRules([
+      ...rules,
+      {
+        ruleOptionId: '',
+        qualifiers: [],
+      }
+    ])
+  };
+
   return (
     <div>
       <h1 className="text-5xl">Password Rules</h1>
@@ -25,7 +38,8 @@ function Ruleset() {
       {rules.map((rule, index) => {
         return (
           <div key={index} className="mt-4 flex gap-4">
-            <select onChange={(e) => { onChooseRuleOption(index, e.target.value) }}>
+            <select onChange={(e) => { onChooseRuleOption(index, e.target.value) }} value={rule.ruleOptionId}>
+              <option value="">Choose a rule</option>
               {ruleOptions.map((option) => {
                 return (
                   <option key={option.id} value={option.id}>{option.label}</option>
@@ -39,13 +53,7 @@ function Ruleset() {
       })}
       
       <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-        onClick={() => setRules([
-          ...rules,
-          {
-            ruleOptionId: null,
-            qualifiers: [],
-          }
-        ])}
+        onClick={onAddRule}
       >Add Rule</button>
     </div>
   );
