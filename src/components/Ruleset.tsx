@@ -31,7 +31,7 @@ function Ruleset() {
   };
 
   return (
-    <div>
+    <div className="border border-purple-400 p-12 rounded-2xl">
       <h1 className="text-5xl">Password Rules</h1>
       <p className="mt-8">Please create rules for the password.</p>
 
@@ -52,7 +52,7 @@ function Ruleset() {
         )
       })}
       
-      <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+      <button className="mt-4 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" 
         onClick={onAddRule}
       >Add Rule</button>
     </div>
