@@ -1,5 +1,6 @@
-export const rules = [
+export const ruleOptions = [
   {
+    id: 'password-length',
     label: 'Password Length',
     qualifiers: [
       {
@@ -21,6 +22,7 @@ export const rules = [
     ],    
   },
   {
+    id: 'capital-letters',
     label: 'Capital Letters',
     qualifiers: [
       {
@@ -42,6 +44,7 @@ export const rules = [
     ],    
   },
   {
+    id: 'numerical-characters',
     label: 'Numerical characters',
     qualifiers: [
       {
@@ -63,6 +66,7 @@ export const rules = [
     ]
   },
   {
+    id: 'special-characters',
     label: 'Special characters',
     qualifiers: [
       {
@@ -100,3 +104,7 @@ export const rules = [
     ]
   }
 ];
+
+export const getRuleOptionById = (id) => {
+  return ruleOptions.find((option) => option.id === id);
+};
